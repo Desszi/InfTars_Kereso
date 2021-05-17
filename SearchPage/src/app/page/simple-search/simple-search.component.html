@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-12 mt-2">
+        <h2>Folyóiratok listája</h2>
+        <div class="card">
+            <div class="card-header">
+                <h6 class="card-title ">Egyszerű keresés</h6>
+                <div class="d-flex p-2 mb-2">
+                    <input [(ngModel)]="filterPhraseAll" class="form-control" type="text" placeholder="Keresés...">
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-success btn-block" routerLink="/journal/0">
+            Új folyóirat felvétele <i class="fa fa-book" aria-hidden="true" just fa></i>
+        </button>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th id="h_id" class="header header-active" (click)="setSorting('id')">#</th>
+                    <th id="h_cim" class="header" (click)="setSorting('cim')">Cím</th>
+                    <th id="h_szerzok" class="header" (click)="setSorting('szerzok')">Szerzők</th>
+                    <th id="h_kulcsszavak" class="header" (click)="setSorting('kulcsszavak')">Kulcsszavak</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let journals of journals$ | async | search:filterPhraseAll | sort:sortby">
+                    <td>{{ journals.id }}</td>
+                    <td>{{ journals.cim }}</td>
+                    <td>{{ journals.szerzok }}</td>
+                    <td>{{ journals.kulcsszavak }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
