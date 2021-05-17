@@ -11,6 +11,7 @@ import { JournalService } from 'src/app/service/journal.service';
 export class SimpleSearchComponent implements OnInit {
 
   filterPhraseAll: string = '';
+  filterKey: string = '';
 
   filterKeyAuthor: string = 'szerzok';
   filterKeyTitle: string = 'cim';

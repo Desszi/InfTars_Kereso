@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let journals of journals$ | async | search:filterPhraseAll | sort:sortby">
+                <tr *ngFor="let journals of journals$ | async | search:filterPhraseAll:filterKey | sort:sortby">
                     <td>{{ journals.id }}</td>
                     <td>{{ journals.cim }}</td>
                     <td>{{ journals.szerzok }}</td>
