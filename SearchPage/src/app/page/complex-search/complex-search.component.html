@@ -1,17 +1,25 @@
 <div class="row">
     <div class="col-12 mt-2">
-        <h2>Folyóiratok listája</h2>
+        <h2 class="mb-4">Információs Társadalom keresője</h2>
         <div class="card">
             <div class="card-header">
+                <nav class="navbar navbar-expand">
+                    <div class="nav navbar-nav">
+                        <a class="nav-item nav-link" routerLink="/simple-search">Egyszerű keresés</a>
+                        <a class="nav-item nav-link" routerLink="/complex-search">Összetett keresés</a>
+                    </div>
+                </nav>
                 <h3 class="card-title ">Összetett keresés</h3>
-                <h6 class="card-title ">Szerző szerinti keresés</h6>
-                <div class="d-flex p-2 mb-2">
+             
+                <div class="d-flex p-2">
+                    <h6 class="card-title p-2 mb-2">Szerző</h6>
                     <input [(ngModel)]="filterPhraseAuthor" class="form-control" type="text" placeholder="Keresés...">
-                </div>
-                <h6 class="card-title ">Cím szerinti keresés</h6>
-                <div class="d-flex p-2 mb-2">
+                   
+                    <h6 class="card-title p-2">Cím</h6>
                     <input [(ngModel)]="filterPhraseTitle" class="form-control" type="text" placeholder="Keresés...">
                 </div>
+
+            
                 <h6 class="card-title ">Kulcsszavak szerinti keresés</h6>
                 <div class="d-flex p-2 mb-2">
                     <input [(ngModel)]="filterPhraseWord" class="form-control" type="text" placeholder="Keresés...">
@@ -21,31 +29,23 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th id="h_id" class="header header-active" (click)="setSorting('id')">#</th>
-                    <th id="h_cim" class="header" (click)="setSorting('cim')">Cím</th>
+                    <th id="h_evfolyam" class="header">Évfolyam</th>
+                    <th id="h_ev" class="header">Év</th>
+                    <th id="h_lapszam" class="header">Lapszám</th>
+                    <th id="h_oldal" class="header">Oldal</th>
                     <th id="h_szerzok" class="header" (click)="setSorting('szerzok')">Szerzők</th>
-                    <th id="h_kulcsszavak" class="header" (click)="setSorting('kulcsszavak')">Kulcsszavak</th>
-                    <th></th>
+                    <th id="h_cim" class="header" (click)="setSorting('cim')">Cím</th>
                 </tr>
             </thead>
             <tbody>
                 <tr
                     *ngFor="let journals of journals$ | async | search:filterPhraseAuthor:filterKeyAuthor | search:filterPhraseTitle:filterKeyTitle| search:filterPhraseWord:filterKeyWord |sort:sortby">
-                    <td>{{ journals.id }}</td>
-                    <td>{{ journals.cim }}</td>
+                    <td>{{ journals.evfolyam }}</td>
+                    <td>{{ journals.ev }}</td>
+                    <td>{{ journals.lapszam }}</td>
+                    <td>{{ journals.oldal }}</td>
                     <td>{{ journals.szerzok }}</td>
-                    <td>{{ journals.kulcsszavak }}</td>
-                    <td>
-                        <div class="btn-group">
-                            <!-- <button [routerLink]="['user/' + journals.id]" class="btn btn-info">
-                  <i class="fa fa-pencil"></i>
-                </button>
-                <button class="btn btn-danger" (click)="setDeleteJournal(journals)" rel="tooltip" title="Remove"
-                  data-toggle="modal" data-target="#deleteModal">
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-                </button> -->
-                        </div>
-                    </td>
+                    <td>{{ journals.cim }}</td>
                 </tr>
             </tbody>
         </table>
