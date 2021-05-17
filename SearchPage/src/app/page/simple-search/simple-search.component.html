@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-12 mt-2">
         <h2 class="mb-4">Információs Társadalom keresője</h2>
-        <div class="card">
+        <div class="card embed-responsive">
             <div class="card-header">
                 <nav class="navbar navbar-expand">
                     <div class="nav navbar-nav">
@@ -15,18 +15,19 @@
                 </div>
             </div>
         </div>
-        <table class="table table-striped">
-            <thead>
+        <table class="table table-striped embed-responsive">
+            <thead class=" embed-responsive">
                 <tr>
-                    <th id="h_evfolyam" class="header">Évfolyam</th>
-                    <th id="h_ev" class="header">Év</th>
-                    <th id="h_lapszam" class="header">Lapszám</th>
-                    <th id="h_oldal" class="header">Oldal</th>
-                    <th id="h_szerzok" class="header" (click)="setSorting('szerzok')">Szerzők</th>
-                    <th id="h_cim" class="header" (click)="setSorting('cim')">Cím</th>
+                    <th id="h_evfolyam" class="header text-center">Évfolyam</th>
+                    <th id="h_ev" class="header text-center">Év</th>
+                    <th id="h_lapszam" class="header text-center">Lapszám</th>
+                    <th id="h_oldal" class="header text-center">Oldal</th>
+                    <th id="h_szerzok" class="header text-center" (click)="setSorting('szerzok')">Szerzők</th>
+                    <th id="h_cim" class="header text-center" (click)="setSorting('cim')">Cím</th>
+                    <th id="h_lapszam" class="header text-center">DOI</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class=" embed-responsive">
                 <tr *ngFor="let journals of journals$ | async | search:filterPhraseAll:filterKey | sort:sortby">
                     <td>{{ journals.evfolyam }}</td>
                     <td>{{ journals.ev }}</td>
@@ -34,6 +35,7 @@
                     <td>{{ journals.oldal }}</td>
                     <td>{{ journals.szerzok }}</td>
                     <td>{{ journals.cim }}</td>
+                    <td><a class="nav-item nav-link" href= `${{journals.DOI}}`>{{ journals.DOI }}</a> </td>
                 </tr>
             </tbody>
         </table>

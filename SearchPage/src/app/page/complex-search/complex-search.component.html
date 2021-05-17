@@ -2,7 +2,7 @@
     <div class="col-12 mt-2">
         <h2 class="mb-4">Információs Társadalom keresője</h2>
         <div class="card">
-            <div class="card-header">
+            <div class="card-header embed-responsive">
                 <nav class="navbar navbar-expand">
                     <div class="nav navbar-nav">
                         <a class="nav-item nav-link" routerLink="/simple-search">Egyszerű keresés</a>
@@ -19,25 +19,25 @@
                     <input [(ngModel)]="filterPhraseTitle" class="form-control" type="text" placeholder="Keresés...">
                 </div>
 
-            
-                <h6 class="card-title ">Kulcsszavak szerinti keresés</h6>
+                <h6 class="card-title p-3">Kulcsszavak szerinti keresés</h6>
                 <div class="d-flex p-2 mb-2">
                     <input [(ngModel)]="filterPhraseWord" class="form-control" type="text" placeholder="Keresés...">
                 </div>
             </div>
         </div>
-        <table class="table table-striped">
+        <table class="table table-striped embed-responsive">
             <thead>
                 <tr>
-                    <th id="h_evfolyam" class="header">Évfolyam</th>
-                    <th id="h_ev" class="header">Év</th>
-                    <th id="h_lapszam" class="header">Lapszám</th>
-                    <th id="h_oldal" class="header">Oldal</th>
-                    <th id="h_szerzok" class="header" (click)="setSorting('szerzok')">Szerzők</th>
-                    <th id="h_cim" class="header" (click)="setSorting('cim')">Cím</th>
+                    <th id="h_evfolyam" class="header text-center">Évfolyam</th>
+                    <th id="h_ev" class="header text-center">Év</th>
+                    <th id="h_lapszam" class="header text-center">Lapszám</th>
+                    <th id="h_oldal" class="header text-center">Oldal</th>
+                    <th id="h_szerzok" class="header text-center" (click)="setSorting('szerzok')">Szerzők</th>
+                    <th id="h_cim" class="header text-center" (click)="setSorting('cim')">Cím</th>
+                    <th id="h_doi" class="header text-center">DOI</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="embed-responsive">
                 <tr
                     *ngFor="let journals of journals$ | async | search:filterPhraseAuthor:filterKeyAuthor | search:filterPhraseTitle:filterKeyTitle| search:filterPhraseWord:filterKeyWord |sort:sortby">
                     <td>{{ journals.evfolyam }}</td>
@@ -46,6 +46,7 @@
                     <td>{{ journals.oldal }}</td>
                     <td>{{ journals.szerzok }}</td>
                     <td>{{ journals.cim }}</td>
+                    <td><a class="nav-item nav-link" href= `${{journals.DOI}}`>{{ journals.DOI }}</a> </td>
                 </tr>
             </tbody>
         </table>
