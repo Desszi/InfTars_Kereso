@@ -5,6 +5,10 @@ import { SimpleSearchComponent } from './page/simple-search/simple-search.compon
 
 const routes: Routes = [
   {
+    path: '',
+    component: SimpleSearchComponent,
+  },
+  {
     path: 'simple-search',
     component: SimpleSearchComponent,
   },
